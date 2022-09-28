@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         registerButton.tintColor = .white  // n usar tint color
         registerButton.backgroundColor = .systemBlue
         registerButton.layer.cornerRadius = 7.0
+        registerButton.isEnabled = false
     }
     
 
@@ -72,7 +73,7 @@ extension ViewController: UITextFieldDelegate {
         print("textFieldShouldReturn")// teclado desaparece
         textField.resignFirstResponder()
         
-        if textField.hasText {
+        if nameTextField.text == "" || adressTextField.text == "" || passwordTextField.text == "" {
             registerButton.isEnabled = false
             registerButton.tintColor = .darkGray
         } else{
