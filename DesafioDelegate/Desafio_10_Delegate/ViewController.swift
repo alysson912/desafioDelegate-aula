@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func tappedButton(_ sender: UIButton) {
-        print("informação enviada")
+        print("informação enviada!")
     }
     
 }
