@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var adressTextField: UITextField!
@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupRegisterButton()
     }
     
-    func setupNameTextfield (){
+    func setupNameTextfield(){
         nameTextField.placeholder = "nome:"
         nameTextField.delegate = self
     }
@@ -42,30 +42,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     func setupRegisterButton(){
         registerButton.setTitle("cadastrar ", for: .normal)
-        registerButton.tintColor = .white
+        registerButton.tintColor = .white  // n usar tint color
         registerButton.backgroundColor = .systemBlue
+        registerButton.layer.cornerRadius = 7.0
+        registerButton.isEnabled = false
     }
+    
+    
+    @IBAction func tappedButton(_ sender: UIButton) {
+        print("informação enviada!")
+    }
+    
+}
+// sempre usar delegade separado via  protocolo
+extension ViewController: UITextFieldDelegate {
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing")// sobe apos clicar
-    
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor.systemBlue.cgColor
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
-        if textField.text == ""{
+        // faz verificacao antes do teclado baixar
+        print("textFieldDidEndEditing") // teclado desaparece
+        if textField.text == ""{ // ou textField.hasText
             textField.layer.borderWidth = 2
             textField.layer.borderColor = .init(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
-        }else {
-            textField.layer.borderWidth = 2
-            textField.layer.borderColor = .init(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)
         }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")//
+        print("textFieldShouldReturn")// teclado desaparece
         textField.resignFirstResponder()
         
-        if textField.text == "" {
+        if nameTextField.text == "" || adressTextField.text == "" || passwordTextField.text == "" {
             registerButton.isEnabled = false
             registerButton.tintColor = .darkGray
         } else{
@@ -74,6 +85,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
 }
-
