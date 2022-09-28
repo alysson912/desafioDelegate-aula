@@ -48,7 +48,10 @@ class ViewController: UIViewController {
         registerButton.isEnabled = false
     }
     
-
+    
+    @IBAction func tappedButton(_ sender: UIButton) {
+        print("informação enviada")
+    }
     
 }
 // sempre usar delegade separado via  protocolo
