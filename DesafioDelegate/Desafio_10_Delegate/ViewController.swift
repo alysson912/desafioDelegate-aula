@@ -76,7 +76,10 @@ extension ViewController: UITextFieldDelegate {
         print("textFieldShouldReturn")// teclado desaparece
         textField.resignFirstResponder()
         
-        if nameTextField.text == "" || adressTextField.text == "" || passwordTextField.text == "" {
+        if nameTextField.text == "" ||
+            adressTextField.text == "" ||
+            passwordTextField.text == "" {
+            
             registerButton.isEnabled = false
             registerButton.tintColor = .darkGray
         } else{
